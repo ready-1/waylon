@@ -28,3 +28,16 @@ class UserFactory(BaseFactory):
         """Factory configuration."""
 
         model = User
+
+class WikiFactory(BaseFactory):
+    """User factory."""
+
+    page_name = Sequence(lambda n: f"page{n}")
+    page_title = Sequence(lambda n: f"Page {n}")
+    content = Sequence(lambda n: f"This is page {n}")
+    last_edit = db.DateTime.utcnow
+
+    class Meta:
+        """Factory configuration."""
+
+        model = Wiki

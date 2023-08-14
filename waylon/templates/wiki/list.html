@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="table-responsive">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Page Name</th>
+                    <th scope="col">Page Title</th>
+                    <th scope="col">Last Edited</th>
+                    <th scope="col"><a name="" id="" class="btn btn-primary" href="#" role="button">New</a></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for page in pages %}
+                <tr class="">
+                    <td scope="row">{{page.page_name}}</td>
+                    <td>{{page.page_title}}</td>
+                    <td>{{page.last_edit}}</td> 
+                    <!-- TODO: format date/time field -->
+                    <td>
+                    <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+        
+    {% endfor %}
+
+{% endblock %}
