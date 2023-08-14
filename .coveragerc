@@ -1,0 +1,6 @@
+[run]
+source = waylon
+omit = 
+    tests/*
+    autoapp.py
+
