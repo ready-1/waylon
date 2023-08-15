@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {# TODO: format page #}
+    <div class="container">
+        <div class="row">
+            <div class="col" style="margin-top: 10px;">
+                <h1>{{page.page_title}}</h1>
+            </div>
+        </div>
+        <div class="row" style="min-height: 100px;">
+            <div class="col" style="margin-top: 10px;">
+                {{html|safe}}
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col align-self-center"><small>Last Edited: {{page.last_edit}}</small></div>
+            <div class="col text-center align-self-center"><strong>{{page.page_name}}</strong></div>
+        </div>
+    </div>
+     
+
+{% endblock %}

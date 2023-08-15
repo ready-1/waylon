@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """User forms."""
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField
+from wtforms import StringField, DateField, SubmitField
 from wtforms.validators import DataRequired
+from wtforms.widgets import TextArea
 
 from .models import WikiPage
 
@@ -12,17 +13,18 @@ class WikiPageForm(FlaskForm):
 
     page_name = StringField("Page name", validators=[DataRequired()])
     page_title = StringField("Page title", validators=[DataRequired()])
-    content = StringField("Content")
+    content = StringField("Content", widget=TextArea())
     last_edit = DateField("Last edit")
+    submit = SubmitField("Save")
 
 
-    def __init__(self, *args, **kwargs):
-        """Create instance."""
-        super(WikiPageForm, self).__init__(*args, **kwargs)
-        self.page_name = None
-        self.page_title = None
-        self.content = None
-        self.last_edit = None
+    # def __init__(self, *args, **kwargs):
+    #     """Create instance."""
+    #     super(WikiPageForm, self).__init__(*args, **kwargs)
+    #     self.page_name = ""
+    #     self.page_title = ""
+    #     self.content = ""
+    #     self.last_edit = ""
 
     def validate(self, **kwargs):
         """Validate the form."""

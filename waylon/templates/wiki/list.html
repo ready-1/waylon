@@ -1,35 +1,40 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-    <div class="table-responsive">
-        <table class="table table-primary">
-            <thead>
-                <tr>
-                    <th scope="col">Page Name</th>
-                    <th scope="col">Page Title</th>
-                    <th scope="col">Last Edited</th>
-                    <th scope="col"><a name="" id="" class="btn btn-primary" href="#" role="button">New</a></th>
-                </tr>
-            </thead>
-            <tbody>
+{# TODO: put this table in a container #}
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Page Name</th>
+                <th scope="col">Page Title</th>
+                <th scope="col">Last Edited</th>
+                <th scope="col"><a name="" id="" class="btn btn-primary" href="{{url_for('wiki.new_page')}}"
+                        role="button">New</a></th>
+            </tr>
+        </thead>
+        <tbody>
             {% for page in pages %}
-                <tr class="">
-                    <td scope="row">{{page.page_name}}</td>
-                    <td>{{page.page_title}}</td>
-                    <td>{{page.last_edit}}</td> 
-                    <!-- TODO: format date/time field -->
-                    <td>
-                    <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    
-        
-    {% endfor %}
+            <tr class="">
+                <td scope="row"><a href="{{url_for('wiki.view_page', page_id=page.id)}}">{{page.page_name}}</a></td>
+                <td>{{page.page_title}}</td>
+                <td>{{page.last_edit}}</td>
+                <!-- TODO: format date/time field -->
+                <td>
+                    {{page.id}}
+                    <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.edit_page', page_id=page.id)}}"
+                        role="button" method="GET"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.delete', page_id=page.id)}}" role="button"><i
+                            class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
 
 {% endblock %}

@@ -2,10 +2,10 @@
 """Wiki models."""
 from datetime import datetime as dt
 
-from waylon.database import Column, PkModel, db
+from waylon.database import Column, CRUDMixin, PkModel, db
 
 
-class WikiPage(PkModel):
+class WikiPage(PkModel, CRUDMixin):
     """A wiki page."""
 
     __tablename__ = "wikis"
@@ -15,6 +15,10 @@ class WikiPage(PkModel):
     content = Column(db.Text, nullable=False)
     last_edit = dt.utcnow()
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+        return
 
 
 
