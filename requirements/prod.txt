@@ -1,7 +1,7 @@
 # Everything needed in production
 
 # waylon specific
-markdown-it>=3.0.0
+markdown-it-py>=3.0.0
 
 # Flask
 click>=7.0
