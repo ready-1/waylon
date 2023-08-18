@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """User forms."""
-from flask_wtf import FlaskForm
+
 from wtforms import StringField, DateField, SubmitField
 from wtforms.validators import DataRequired
 from wtforms.widgets import TextArea
+from flask_wtf import FlaskForm
 
 from .models import WikiPage
-
 
 class WikiPageForm(FlaskForm):
     """Wiki page form."""
