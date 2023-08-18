@@ -29,7 +29,6 @@ from .models import WikiPage
 blueprint = Blueprint("wiki", __name__, static_folder="../static", url_prefix="/wiki")
 
 
-
 # @login_manager.user_loader
 # def load_user(user_id):
 #     """Load user by ID."""
@@ -43,14 +42,15 @@ def list():
     pages = WikiPage.query.all()
     return render_template("wiki/list.html", pages=pages)
 
+
 @blueprint.route("/<page_id>", methods=["GET"])
 def view_page(page_id):
-    md = MarkdownIt("gfm-like", {'linkify': False})
+    md = MarkdownIt("gfm-like", {"linkify": False})
     page = WikiPage.query.filter_by(id=page_id).first()
-    html=md.render(page.content)
+    html = md.render(page.content)
     print(html)
     print(page.content)
-    return render_template("wiki/view.html", page=page, html=html )
+    return render_template("wiki/view.html", page=page, html=html)
 
 
 @blueprint.route("/new_page", methods=["GET", "POST"])
@@ -69,6 +69,7 @@ def new_page():
             return redirect(url_for("wiki.view_page", page_id=page.id))
     return render_template("wiki/new.html", new_page_form=form, page=page)
 
+
 @blueprint.route("/edit/<page_id>", methods=["GET", "POST"])
 def edit_page(page_id):
     """Edit page."""
@@ -84,7 +85,7 @@ def edit_page(page_id):
         flash("Page updated.", "success")
         return redirect(url_for("wiki.list"))
     return render_template("wiki/edit.html", edit_form=form, page=page)
-                
+
 
 # delete a page
 @blueprint.route("/delete/<page_id>", methods=["GET", "POST"])
@@ -94,5 +95,3 @@ def delete(page_id):
     page.delete()
     flash(f"Page {page.page_name} deleted.", "success")
     return redirect(url_for("wiki.list"))
-
-

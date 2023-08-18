@@ -20,8 +20,6 @@ class WikiPage(PkModel, CRUDMixin):
         db.session.commit()
         return
 
-
-
     def __repr__(self):
         """Represent instance as a unique string."""
         return f"<WikiPage({self.page_name!r})>"

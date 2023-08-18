@@ -18,7 +18,6 @@ class WikiPageForm(FlaskForm):
     last_edit = DateField("Last edit")
     submit = SubmitField("Save")
 
-
     # def __init__(self, *args, **kwargs):
     #     """Create instance."""
     #     super(WikiPageForm, self).__init__(*args, **kwargs)
@@ -29,14 +28,20 @@ class WikiPageForm(FlaskForm):
 
     def validate(self, **kwargs):
         """Validate the form."""
+
         initial_validation = super(WikiPageForm, self).validate()
+
         if not initial_validation:
             return False
+
         page = WikiPage.query.filter_by(page_name=self.page_name.data).first()
+
         if page:
             self.page_name.errors.append("Page name already exists")
+
             return False
         page = WikiPage.query.filter_by(page_title=self.page_title.data).first()
+
         if page:
             self.page_title.errors.append("Page Title already registered")
             return False

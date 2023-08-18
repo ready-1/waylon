@@ -29,6 +29,7 @@ class UserFactory(BaseFactory):
 
         model = User
 
+
 class WikiFactory(BaseFactory):
     """User factory."""
 
