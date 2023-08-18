@@ -18,23 +18,22 @@
             <tr class="">
                 <td scope="row"><a href="{{url_for('wiki.view_page', page_id=page.id)}}">{{page.page_name}}</a></td>
                 <td>{{page.page_title}}</td>
-                <td>{{page.last_edit}}</td>
-                <!-- TODO: format date/time field -->
+                <td>{{page.last_edit.strftime("%Y-%m-%d %H:%M")}}</td>
                 <td>
-                    {{page.id}}
                     <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.edit_page', page_id=page.id)}}"
-                        role="button" method="GET"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.delete', page_id=page.id)}}" role="button"><i
-                            class="fa-solid fa-trash"></i></a>
+                        role="button" method="GET">
+                        <i class="bi-pencil"></i>
+                        </a>
+                    <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.delete', page_id=page.id)}}"
+                        role="button">
+                            <i class="bi-trash"></i>
+                            </a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-
-
-
 
 
 {% endblock %}

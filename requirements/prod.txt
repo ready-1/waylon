@@ -2,6 +2,7 @@
 
 # waylon specific
 markdown-it-py>=3.0.0
+flask-moment>=1.0.5
 
 # Flask
 click>=7.0
