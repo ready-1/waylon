@@ -5,9 +5,10 @@
  */
 
 // JavaScript modules
-require('@fortawesome/fontawesome-free');
+// require('@fortawesome/fontawesome-free');
 require('jquery');
 require('bootstrap');
+// require('bootstrap-icons');
 
 require.context(
   '../img', // context folder

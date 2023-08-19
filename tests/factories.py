@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 """Factories to help in tests."""
+from datetime import datetime as dt
+
 from factory import Sequence
 from factory.alchemy import SQLAlchemyModelFactory
 
 from waylon.database import db
 from waylon.user.models import User
+from waylon.wiki.models import WikiPage
 
 
 class BaseFactory(SQLAlchemyModelFactory):
@@ -29,15 +32,16 @@ class UserFactory(BaseFactory):
 
         model = User
 
+
 class WikiFactory(BaseFactory):
     """User factory."""
 
     page_name = Sequence(lambda n: f"page{n}")
     page_title = Sequence(lambda n: f"Page {n}")
     content = Sequence(lambda n: f"This is page {n}")
-    last_edit = db.DateTime.utcnow
+    last_edit = dt.utcnow()
 
     class Meta:
         """Factory configuration."""
 
-        model = Wiki
+        model = WikiPage
