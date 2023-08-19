@@ -15,10 +15,12 @@ class WikiPage(PkModel, CRUDMixin):
     content = Column(db.Text, nullable=False)
     last_edit = dt.utcnow()
 
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-        return
+    # def save(self):
+    #     """
+    #     Save oneself.
+    #     """
+    #     with db.session.begin():
+    #         db.session.add(self)
 
     def __repr__(self):
         """Represent instance as a unique string."""

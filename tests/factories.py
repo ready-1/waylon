@@ -5,6 +5,7 @@ from factory.alchemy import SQLAlchemyModelFactory
 
 from waylon.database import db
 from waylon.user.models import User
+from waylon.wiki.models import WikiPage
 
 
 class BaseFactory(SQLAlchemyModelFactory):
@@ -41,4 +42,4 @@ class WikiFactory(BaseFactory):
     class Meta:
         """Factory configuration."""
 
-        model = Wiki
+        model = WikiPage

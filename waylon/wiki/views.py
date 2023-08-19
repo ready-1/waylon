@@ -2,29 +2,11 @@
 """Public section, including homepage and signup."""
 from datetime import datetime as dt
 
-from flask import (
-    Blueprint,
-    current_app,
-    flash,
-    redirect,
-    render_template,
-    request,
-    url_for,
-)
-from flask_login import login_required, login_user, logout_user
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from markdown_it import MarkdownIt
-from markdown_it.presets import gfm_like
-
-from waylon.utils import flash_errors
 
 from .forms import WikiPageForm
 from .models import WikiPage
-
-# from waylon.extensions import login_manager
-# from waylon.public.forms import LoginForm
-# from waylon.user.forms import RegisterForm
-# from waylon.user.models import User
-
 
 blueprint = Blueprint("wiki", __name__, static_folder="../static", url_prefix="/wiki")
 
