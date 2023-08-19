@@ -27,6 +27,7 @@ def list():
 
 @blueprint.route("/<page_id>", methods=["GET"])
 def view_page(page_id):
+    """View page."""
     md = MarkdownIt("gfm-like", {"linkify": False})
     page = WikiPage.query.filter_by(id=page_id).first()
     html = md.render(page.content)
