@@ -20,7 +20,7 @@ blueprint = Blueprint("wiki", __name__, static_folder="../static", url_prefix="/
 @blueprint.route("/", methods=["GET"])
 def home():
     """Home page."""
-    return redirect(url_for("wiki.page_list"))
+    return redirect(url_for("wiki.page_list", title="Wiki Home Page"))
 
 
 @blueprint.route("/list", methods=["GET"])
@@ -28,7 +28,7 @@ def home():
 def page_list():
     """Wiki Page List."""
     pages = WikiPage.query.all()
-    return render_template("wiki/list.html", pages=pages)
+    return render_template("wiki/list.html", title="Wiki Page List", pages=pages)
 
 
 @blueprint.route("/<page_id>", methods=["GET"])
@@ -39,7 +39,7 @@ def view_page(page_id):
     html = md.render(page.content)
     print(html)
     print(page.content)
-    return render_template("wiki/view.html", page=page, html=html)
+    return render_template("wiki/view.html", title=page.page_name, page=page, html=html)
 
 
 @blueprint.route("/new_page", methods=["GET", "POST"])
@@ -56,7 +56,7 @@ def new_page():
             page.save()
             flash("Page created.", "success")
             return redirect(url_for("wiki.view_page", page_id=page.id))
-    return render_template("wiki/new.html", new_page_form=form, page=page)
+    return render_template("wiki/new.html", title="New Page", new_page_form=form, page=page)
 
 
 @blueprint.route("/edit/<page_id>", methods=["GET", "POST"])
@@ -73,7 +73,7 @@ def edit_page(page_id):
         page.save()
         flash("Page updated.", "success")
         return redirect(url_for("wiki.page_list"))
-    return render_template("wiki/edit.html", edit_form=form, page=page)
+    return render_template("wiki/edit.html", title="Edit Page", edit_form=form, page=page)
 
 
 # delete a page
