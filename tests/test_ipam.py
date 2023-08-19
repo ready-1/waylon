@@ -1,5 +1,11 @@
 """ Test IPAM module """
 
+
+def test_home_page_has_link_ipam(testapp):
+    """Test IPAM home page."""
+    response = testapp.get("/")
+    assert 'href="/ipam/"' in response.text
+
 def test_ipam_home_route_returns_success(testapp):
     """Test IPAM home page."""
     response = testapp.get("/ipam/")
