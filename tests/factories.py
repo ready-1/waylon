@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Factories to help in tests."""
 from datetime import datetime as dt
+
 from factory import Sequence
 from factory.alchemy import SQLAlchemyModelFactory
 
