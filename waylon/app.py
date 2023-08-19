@@ -5,7 +5,7 @@ import sys
 
 from flask import Flask, render_template
 
-from waylon import commands, public, user, wiki
+from waylon import commands, public, user, wiki, ipam
 from waylon.extensions import (
     bcrypt,
     cache,
@@ -52,6 +52,7 @@ def register_blueprints(app):
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
     app.register_blueprint(wiki.views.blueprint)
+    app.register_blueprint(ipam.views.blueprint)
     return None
 
 
