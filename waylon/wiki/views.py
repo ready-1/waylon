@@ -17,10 +17,16 @@ blueprint = Blueprint("wiki", __name__, static_folder="../static", url_prefix="/
 #     return User.get_by_id(int(user_id))
 
 
-@blueprint.route("/list", methods=["GET"])
 @blueprint.route("/", methods=["GET"])
-def list():
-    """Wiki List."""
+def home():
+    """Home page."""
+    return redirect(url_for("wiki.page_list"))
+
+
+@blueprint.route("/list", methods=["GET"])
+# TODO: change the name of this function to page_list and change all references to the new name
+def page_list():
+    """Wiki Page List."""
     pages = WikiPage.query.all()
     return render_template("wiki/list.html", pages=pages)
 
@@ -66,7 +72,7 @@ def edit_page(page_id):
         page.last_edit = dt.utcnow()
         page.save()
         flash("Page updated.", "success")
-        return redirect(url_for("wiki.list"))
+        return redirect(url_for("wiki.page_list"))
     return render_template("wiki/edit.html", edit_form=form, page=page)
 
 
@@ -77,4 +83,4 @@ def delete(page_id):
     page = WikiPage.query.filter_by(id=page_id).first()
     page.delete()
     flash(f"Page {page.page_name} deleted.", "success")
-    return redirect(url_for("wiki.list"))
+    return redirect(url_for("wiki.page_list"))

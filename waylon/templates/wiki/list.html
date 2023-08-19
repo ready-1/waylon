@@ -1,39 +1,47 @@
 {% extends "layout.html" %}
 
 {% block content %}
-{# TODO: put this table in a container #}
-<div class="table-responsive">
-    <table class="table table-primary">
-        <thead>
-            <tr>
-                <th scope="col">Page Name</th>
-                <th scope="col">Page Title</th>
-                <th scope="col">Last Edited</th>
-                <th scope="col"><a name="" id="" class="btn btn-primary" href="{{url_for('wiki.new_page')}}"
-                        role="button">New</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for page in pages %}
-            <tr class="">
-                <td scope="row"><a href="{{url_for('wiki.view_page', page_id=page.id)}}">{{page.page_name}}</a></td>
-                <td>{{page.page_title}}</td>
-                <td>{{page.last_edit.strftime("%Y-%m-%d %H:%M")}}</td>
-                <td>
-                    <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.edit_page', page_id=page.id)}}"
-                        role="button" method="GET">
-                        <i class="bi-pencil"></i>
-                        </a>
-                    <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.delete', page_id=page.id)}}"
-                        role="button">
-                            <i class="bi-trash"></i>
-                            </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container-lg p-3">
+    <div class="row-cols-auto justify-content-center align-items-center g-2 mb-3">
+        <div class="col">
+            <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.new_page')}}" role="button">New</a>
+        </div>
+    </div>
+    <div class="row-cols-auto justify-content-center align-items-center g-2 mt-3">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Page Name</th>
+                            <th scope="col">Page Title</th>
+                            <th scope="col">Last Edited</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for page in pages %}
+                        <tr class="">
+                            <td scope="row"><a
+                                    href="{{url_for('wiki.view_page', page_id=page.id)}}">{{page.page_name}}</a></td>
+                            <td>{{page.page_title}}</td>
+                            <td>{{page.last_edit.strftime("%Y-%m-%d %H:%M")}}</td>
+                            {# TODO: remove these links #}
+                            {# <td>
+                                <a name="" id="" class="btn btn-primary"
+                                    href="{{url_for('wiki.edit_page', page_id=page.id)}}" role="button" method="GET">
+                                    <i class="bi-pencil"></i>
+                                </a>
+                                <a name="" id="" class="btn btn-primary"
+                                    href="{{url_for('wiki.delete', page_id=page.id)}}" role="button">
+                                    <i class="bi-trash"></i>
+                                </a>
+                            </td> #}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 {% endblock %}

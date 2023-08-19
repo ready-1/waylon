@@ -1,23 +1,61 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    {# TODO: format page #}
-    <div class="container">
-        <div class="row">
-            <div class="col" style="margin-top: 10px;">
-                <h1>{{page.page_title}}</h1>
-            </div>
-        </div>
-        <div class="row" style="min-height: 100px;">
-            <div class="col" style="margin-top: 10px;">
-                {{html|safe}}
-            </div>
-        </div>
-        <div class="row" style="margin-top: 10px;">
-            <div class="col align-self-center"><small>Last Edited: {{page.last_edit.strftime("%Y-%m-%d %H:%M")}}</small></div>
-            <div class="col text-center align-self-center"><strong>{{page.page_name}}</strong></div>
+<div class="container container-lg pt-3">
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col">
+            <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.page_list', page_id=page.id)}}" role="button"
+                method="GET">
+                <i class="bi-house"></i> Wiki
+            </a>
+            <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.edit_page', page_id=page.id)}}" role="button"
+                method="GET">
+                <i class="bi-pencil"></i>
+            </a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="bi-trash"></i>
+            </button>
         </div>
     </div>
-     
+    <div class="row">
+        <div class="col" style="margin-top: 10px;">
+            <h1>{{page.page_title}}</h1>
+        </div>
+    </div>
+    <div class="row" style="min-height: 100px;">
+        <div class="col" style="margin-top: 10px;">
+            {{html|safe}}
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col align-self-center"><small>Last Edited: {{page.last_edit.strftime("%Y-%m-%d %H:%M")}}</small>
+        </div>
+        <div class="col text-center align-self-center"><strong>{{page.page_name}}</strong></div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete {{page.page_name}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this page?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a name="" id="" class="btn btn-primary" href="{{url_for('wiki.delete', page_id=page.id)}}"
+                    role="button">
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
