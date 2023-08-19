@@ -1,22 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
-{#  TODO: format page   #}
-<form action="" method="post">
-    {{ edit_form.hidden_tag() }}
-    <div class="form-group">
-        {{ edit_form.page_name.label }}
-        {{ edit_form.page_name(class_="form-control", size=32) }}
-    </div>
-    <div class="form-group">
-        {{ edit_form.page_title.label }}
-        {{ edit_form.page_title(class_="form-control", size=32) }}
-    </div>
-        <div class="form-group">
-        {{ edit_form.content.label }}
-        {{ edit_form.content(class_="form-control", size=32) }}
-    </div>
-    {{ edit_form.submit(class_="btn btn-primary", method="POST") }}
-    <a class="btn btn-secondary" href="{{url_for('wiki.view_page', page_id=edit_form.id)}}"" role="button">Cancel</a>
-</form>
+<div class="container container-lg pt-3">
 
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col">
+            {# TODO: format page #}
+            <form action="" method="post">
+                {{ edit_form.hidden_tag() }}
+                <div class="form-group">
+                    {{ edit_form.page_name.label(class="form-label") }}
+                    {{ edit_form.page_name(class="form-control ", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ edit_form.page_title.label(class="form-label") }}
+                    {{ edit_form.page_title(class="form-control", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ edit_form.content.label(class="form-label") }}
+                    {{ edit_form.content(class="form-control", rows=15) }}
+                </div>
+                {{ edit_form.submit(class_="btn btn-primary", method="POST") }}
+                <a class="btn btn-secondary" href="{{url_for('wiki.view_page', page_id=edit_form.id)}}"" role="
+                    button">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
