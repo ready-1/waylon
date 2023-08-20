@@ -1,4 +1,4 @@
-""" Test IPAM module """
+"""Test IPAM module."""
 
 
 def test_home_page_has_link_ipam(testapp):
@@ -12,7 +12,7 @@ def test_ipam_home_route_returns_success(testapp):
     assert response.status_code == 200
 
 def test_ipam_home_route_returns_proper_page(testapp):
-    """test_ipam_home_route_returns_proper_page"""
+    """test_ipam_home_route_returns_proper_page."""
     response = testapp.get("/ipam/")
-    assert "<h1>IPAM</h1>" in response.text
-
+    assert response.status_code == 200
+    assert "<title>IPAM</title>" in response.text
