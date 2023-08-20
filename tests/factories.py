@@ -8,6 +8,7 @@ from factory.alchemy import SQLAlchemyModelFactory
 from waylon.database import db
 from waylon.user.models import User
 from waylon.wiki.models import WikiPage
+from waylon.ipam.models import IPAddress
 
 
 class BaseFactory(SQLAlchemyModelFactory):
@@ -45,3 +46,19 @@ class WikiFactory(BaseFactory):
         """Factory configuration."""
 
         model = WikiPage
+
+class IPAddressFactory(BaseFactory):
+    """IP Address factory."""
+
+    ipv4_address = Sequence(lambda n: f"192.168.251.{n}")
+    ipv4_cidr = Sequence(lambda n: f"{n}")
+    device = Sequence(lambda n: f"Device Number {n}")
+    location = Sequence(lambda n: f"Location Number{n}")
+    DHCP = True
+    MAC = Sequence(lambda n: f"99:99:99:99:99:{n}")
+
+
+    class Meta:
+        """Factory configuration."""
+
+        model = IPAddress
