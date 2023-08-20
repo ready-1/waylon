@@ -83,4 +83,4 @@ def delete(page_id):
     page = WikiPage.query.filter_by(id=page_id).first()
     page.delete()
     flash(f"Page {page.page_name} deleted.", "success")
-    return redirect(url_for("wiki.page_list"))
+    return redirect(url_for("wiki.page_list", title="IPAM Home"))
