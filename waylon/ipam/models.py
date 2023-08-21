@@ -22,7 +22,7 @@ class IPAddress(PkModel, CRUDMixin):
         cidr = f'{self.ipv4_address}/{self.ipv4_cidr}'
         return cidr
 
-    def get_netmask(self):
+    def get_subnet(self):
         """Get netmask."""
         host_bits = 32 - int(self.ipv4_cidr)
         netmask = socket.inet_ntoa(struct.pack('!I', (1 << 32) - (1 << host_bits)))

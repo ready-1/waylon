@@ -6,9 +6,9 @@ from factory import Sequence
 from factory.alchemy import SQLAlchemyModelFactory
 
 from waylon.database import db
+from waylon.ipam.models import IPAddress
 from waylon.user.models import User
 from waylon.wiki.models import WikiPage
-from waylon.ipam.models import IPAddress
 
 
 class BaseFactory(SQLAlchemyModelFactory):

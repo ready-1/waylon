@@ -19,7 +19,7 @@ services:
         <<: *build_args
     image: "waylon-development"
     ports:
-      - "8080:5000"
+      - "5050:5000"
       - "2992:2992"
     <<: *default_volumes
 
@@ -53,6 +53,13 @@ services:
     stdin_open: true
     tty: true
     <<: *default_volumes
+
+networks:
+  default:
+    name: waylon_net
+    external: true
+    
+
 
 volumes:
   node-modules:

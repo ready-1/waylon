@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block page_title %}{{ title }}{% endblock page_title %}
+
+{% block content %}
+    <div class="container-lg pt-3">
+    <div class="row-cols-auto justify-content-center align-items-center g-2">
+        <div class="col">
+            <form action="" method="post">
+                {{ ipam_form.hidden_tag() }}
+                <div class="form-group">
+                    {{ ipam_form.ipv4_address.label }}
+                    {{ ipam_form.ipv4_address(class_="form-control", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ ipam_form.ipv4_cidr.label }}
+                    {{ ipam_form.ipv4_cidr(class_="form-control", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ ipam_form.device.label }}
+                    {{ ipam_form.device(class_="form-control", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ ipam_form.location.label }}
+                    {{ ipam_form.location(class_="form-control", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ ipam_form.DHCP.label }}
+                    {{ ipam_form.DHCP(class_="form-control form-check-input", type="checkbox", size=32) }}
+                </div>
+                <div class="form-group">
+                    {{ ipam_form.MAC.label }}
+                    {{ ipam_form.MAC(class_="form-control", size=32) }}
+                </div>
+
+                {{ ipam_form.submit(class_="btn btn-primary") }}
+                <a class="btn btn-secondary" href="{{url_for('ipam.view', ip_id=ip_id)}}" role="button"><i class="bi-x-circle"></i> Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock  %}

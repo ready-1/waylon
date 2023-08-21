@@ -52,5 +52,5 @@ CMD ["-c", "/etc/supervisor/supervisord.conf"]
 FROM builder AS development
 RUN pip install --no-cache -r requirements/dev.txt
 EXPOSE 2992
-EXPOSE 5000
+EXPOSE 5050
 CMD [ "npm", "start" ]

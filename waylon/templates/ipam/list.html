@@ -3,9 +3,36 @@
 {% block page_title %}{{ title }}{% endblock page_title %}
 
 {% block content %}
-
-
-
-
+<div class="container pt-3">
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col">
+            <a class="btn btn-primary" href="{{url_for('ipam.new')}}" role="button"><i class="bi-plus"></i> New</a>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col">
+            <div class="table-responsive-lg">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">IP Address</th>
+                            <th scope="col">Device</th>
+                            <th scope="col">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ip_address in ip_addresses %}
+                        <tr class="">
+                            <td scope="row"><a href="{{url_for('ipam.view', ip_id=ip_address.id)}}">{{ip_address.ipv4_address}}</a></td>
+                            <td>{{ip_address.device}}</td>
+                            <td>{{ip_address.location}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

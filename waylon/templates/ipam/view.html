@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block page_title %}{{ title }}{% endblock page_title %}
+
+{% block content %}
+<div class="container-lg pt-3">
+
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col">
+            <a name="" id="" class="btn btn-primary" href="{{url_for('ipam.ip_list')}}" role="button"
+                method="GET">
+                <i class="bi-house"></i> IPAM
+            </a>
+            <a name="" id="" class="btn btn-primary" href="{{url_for('ipam.edit', ip_id=ip_address.id)}}" role="button"
+                method="GET">
+                <i class="bi-pencil"></i>
+            </a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="bi-trash"></i>
+            </button>
+        </div>
+
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-3 text-end fw-lighter">IPv4:</div>
+        <div class="col">{{ip_address.ipv4_address}}/{{ip_address.ipv4_cidr}}</div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-3 text-end fw-lighter">Subnet:</div>
+        <div class="col">{{ip_address.get_subnet()}}</div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-3 text-end fw-lighter">Device:</div>
+        <div class="col">{{ip_address.device}}</div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-3 text-end fw-lighter">Location:</div>
+        <div class="col">{{ip_address.location}}</div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-3 text-end fw-lighter">Static DHCP:</div>
+        <div class="col">{{ip_address.DHCP}}</div>
+    </div>
+    <div class="row justify-content-center align-items-center g-2">
+        <div class="col-3 text-end fw-lighter">MAC Address:</div>
+        <div class="col">{{ip_address.MAC}}</div>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete {{ip_address.ipv4_address }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this IP Address?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a name="" id="" class="btn btn-primary" href="{{url_for('ipam.delete', ip_id=ip_address.id)}}"
+                    role="button">
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

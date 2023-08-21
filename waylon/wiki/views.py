@@ -37,8 +37,6 @@ def view_page(page_id):
     md = MarkdownIt("gfm-like", {"linkify": False})
     page = WikiPage.query.filter_by(id=page_id).first()
     html = md.render(page.content)
-    print(html)
-    print(page.content)
     return render_template("wiki/view.html", title=page.page_name, page=page, html=html)
 
 

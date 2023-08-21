@@ -5,7 +5,7 @@ import sys
 
 from flask import Flask, render_template
 
-from waylon import commands, public, user, wiki, ipam
+from waylon import commands, ipam, public, user, wiki
 from waylon.extensions import (
     bcrypt,
     cache,
