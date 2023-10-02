@@ -6,7 +6,7 @@ flask-moment>=1.0.5
 
 # Flask
 click>=7.0
-Flask==2.3.2
+Flask==3.0.0
 Werkzeug==2.3.7
 
 # Database
